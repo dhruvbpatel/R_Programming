@@ -1,0 +1,336 @@
+---
+title:  <span style="color:Red"> Conditional Statments and user defined functions in R <span>
+author: "Dhruv Patel"
+date: "12/08/2019"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Writing R functions
+
+Rather than writing same code repeatedly, it is probably a good idea to turn it into a function. There are many reasons to turn it into a function including maintainablity and ease of reuse. R has a very convenient way to make function which is very different from other programming languages.
+
+Taking a simple example by making Hello World Function.
+
+```{r}
+hello <- function()
+{
+  print("hello,world !")
+}
+hello
+```
+
+---
+
+## Function Arguments 
+Arguments are easily addded to the function inside the paranthesis of the function declaration. In a function arguments can be passed though various ways.
+
+```{r}
+hello.person <- function(name)
+{
+  print(sprintf("hello %s",name ))
+}
+hello.person("Dhruv")
+```
+
+---
+
+Argument name can also be passed as a variable inside the function, and can be used as any other variable and as argument to further function calls.
+
+```{r}
+hello.person <- function(first,last)
+{
+  print(sprintf("hello %s %s",first,last ))
+}
+hello.person("Dhruv","Patel")
+```
+
+```{r}
+hello.person(first = "Dhruv",last= "Patel")
+```
+
+```{r}
+hello.person(fir = "Dhruv","Patel")
+```
+
+---
+
+## Default Arguments 
+When using multiple arguments it is not neccessary to have value entered for each argument every time, R provides facility to provide default arguments. These can NULL, characters, numbers or any other valid R object.
+
+```{r}
+hello.person <- function(first, last = "Patel")
+{
+   print(sprintf("hello %s %s",first,last ))
+}
+hello.person("Dhruv")
+```
+
+```{r}
+hello.person("John","Doe")
+```
+
+---
+
+## Extra arguments 
+R provides a special operator that allowes to take arbitary number of arguments without mentioning function definition. This is dot-dot-dot argument(…).
+
+```{r}
+hello.person <- function(first, last = "Dhruv",...)
+{
+   print(sprintf("hello %s %s",first,last ))
+  l=list(...)
+  print(sprintf("hello %s %s",first,l[1] ))
+}
+hello.person("Dhruv", extra = "GOODBYE")
+```
+
+---
+
+## Return Values 
+Functions are generally used to compute some value, so they need mechanism to supply that value back to the caller. This is called returning and is done quite easily. In R this can be accomplished via 2 ways. The value of the last line of the code is returned automatically. The return command more explicitly speicfies that a value should be returned and the function should be exited.
+
+```{r}
+double.num <- function(x)
+{
+  x*2
+}
+double.num(5)
+```
+
+```{r}
+double.num <- function(x)
+{
+  return(x*2)
+}
+double.num(5)
+```
+
+---
+
+```{r}
+double.num <- function(x)
+{
+  return(x*2)
+  print("hello")
+  return(17)
+}
+double.num(5)
+```
+
+---
+
+## do.call 
+do.call allows us to specify the name of the function either as a character or as an object, and provide argument as list.
+
+```{r}
+run.this <- function(x, func=mean)
+{
+  do.call(func, args = list(x))
+
+}
+
+run.this(1:10)
+```
+
+```{r}
+run.this(1:10,sum )
+```
+
+---
+
+## Conclusion 
+functions allow us to create reusable code that avoids repetition and allows easy modification.
+
+---
+
+## Control Statements 
+Control statements allow us to control flow of our programming and cause different things to happen depending on the value of tests. Tests result are logical, TRUE or FALSE, which is used in if-like statements. Main control statements are if,else,ifelse and switch.
+
+---
+
+## if and else 
+The most common test is if command. If something is true then perform the action otherwise, do not perform the action.
+
+```{r}
+tocheck <- 1
+if(tocheck == 1)
+{
+  print("hello")
+}
+```
+
+---
+
+```{r}
+check.bool <- function(x)
+{
+  if(x ==1)
+  {
+    print("hello")
+    
+  }
+  else if(x==0)
+  {
+    print("Goodbye")
+  }
+  else
+  {
+    print("confused")
+  }
+}
+
+check.bool(1)
+```
+
+```{r}
+check.bool(0)
+```
+
+```{r}
+check.bool(2)
+```
+
+---
+
+## Switch 
+If we have multiple cases to check writing if-else repeatedly can be cumbersome, in these cases switch is very useful. The first argument is the value we are testing, subsequent arguments are particular value and what should be the result.
+
+```{r}
+use.switch <- function(x)
+{
+  switch(x,
+         "a"="first",
+         "b"="second",
+         "c"="third",
+         "d"="fourth",
+         "other")
+}
+
+use.switch("b")
+```
+
+```{r}
+use.switch("z")
+```
+
+---
+
+## ifelse 
+while if is like the if statement in traditional languages, ifelse is more like the if function in Excel. The first argument is the condition to be tested (much like in a traditional if statement), the second argument is the return value if the test is true and third argument is the return value if the test is False.
+
+```{r}
+ifelse(1 == 0, "YES","NO")
+```
+
+This returned “Yes” for each element of totest = 1 and “No” for each element not equals to 1
+
+```{r}
+totest<-c(1,1,0,1,0,1)
+ifelse(totest == 1,"YES","NO")
+```
+
+Now let’s say that totest has NA elements. IN that case the corresponding result from ifelse is NA.
+
+```{r}
+totest[2]<-NA
+ifelse(totest == 1,"YES","NO")
+```
+
+---
+
+## Compound Test 
+It is use with any argument which gives logical TRUE or FALSE. The double form(&& and ||) is better with if statement and single form (& and |) is necessary for ifelse.
+
+this check each element of a and each element of b
+
+```{r}
+a<-c(1,1,0,1)
+b<-c(2,1,0,1)
+ifelse(a == 1 & b== 1, "YES","NO")
+```
+
+This check the first element only of a and b, return only one result
+
+```{r}
+ifelse(a == 1 && b == 1,"YES","NO")
+```
+
+The other difference is the single & or | uses both the side to compare while in && it uses only one side.
+
+---
+
+## Conclusion 
+From this chapter we learned about command line and in functions, conditional statement (if ifelse while) and switch statement.
+
+---
+
+## for loops 
+The most commonly used loop statement in Programming . It iterates over an index provided as vector.
+
+For example we print out the first ten numbers.
+
+```{r}
+for(i in 1:10)
+{
+  print (i)
+}
+```
+
+print(1:10) performs the same operations in backend
+
+```{r}
+print(1:10)
+```
+
+---
+
+## while loops 
+It used less frequently in R than the for loop , it is simpple to implement . It runs the code inside the braces repeatedly as long as the tested condition proves true.
+
+In the example we print the value of x and iterate until it reaches 5.
+
+```{r}
+x<- 1
+while(x <= 5)
+{
+  print(x)
+  x<- x+1
+}
+```
+
+## Controling Loops 
+It used when we want to skip the next iteration of the loop or completely break out of it. The keywords are next and break
+
+Here is the example of next
+
+```{r}
+for(i in 1:10){
+  if(i==3){
+    next
+  }
+  print(i)
+}
+```
+
+If you noticed that 3 is not printed Here is the example of break
+
+```{r}
+for(i in 1:10){
+  if(i==3){
+    break
+  }
+  print(i)
+}
+```
+
+If you noticed the loop breaks when i equals 3
+
+---
+
+## Conclusion 
+In this we learned about two primary loops(**for** and **which**) and about the contriolling the loops using **break** and **next**
+

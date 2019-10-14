@@ -1,0 +1,58 @@
+̥---
+title: "Simple Linear Regression"
+author: "Dhruv Patel"
+date: "02/10/2lib019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+```
+
+```{r}
+library(tidyverse)  #importing libraries
+library(ggpubr)
+#theme_set(theme_pubr())
+```
+
+```{r}
+data("marketing", package = "datarium")           # from package datarium selecting marketing dataset
+head(marketing, 5)
+```
+```{r}
+ggplot(marketing, aes(x = youtube, y = sales)) +
+  geom_point() +                                     # plotting initial plot of the data 
+  stat_smooth()
+```
+
+
+
+
+
+
+
+
+```{r pressure, echo=FALSE}
+cor(marketing$youtube, marketing$facebook)   
+
+
+```
+```{r}
+model <- lm(facebook ~ youtube, data = marketing)    # applying single linear regression using 
+
+model       #y ~ b0 + b1*x+e
+
+```
+
+```{r}
+ggplot(marketing, aes(youtube, sales)) +
+  geom_point() +                                        ## finally plotting the resultant output
+  stat_smooth(method = lm)
+
+```
+```{r}
+summary(model)       #getting the p-value and std errors and estimating out result
+
+```
+
+

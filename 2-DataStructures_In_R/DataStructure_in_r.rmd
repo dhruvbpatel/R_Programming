@@ -1,0 +1,1794 @@
+---
+title:  <span style="color:Red"> Data Types in R   <span>
+subtitle: "Constants, Vectors,Matrix,Data frames, Lists"
+author: "Dhruv Patel"
+date: "22 July 2019"
+output: slidy_presentation
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo =TRUE)
+```
+
+## Data Types
+R has five type of data objects or structures.
+
+* Vector
+* Matrix
+* Array
+* Data frame
+* List
+
+In R basically these data structures are classified into two types, namely, atomic (homogeneous) and generic (heterogeneous).
+
+## 
+
+In atomic data structure all the stored objects are of the same type, whereas in generic data structure the stored objects may be mixture of different types.
+
+|Dimension|Atomic|Generic|
+|:-------:|:-----|:---------|
+| 1 | Vector	| List        |
+| 2	| Matrix	| data frame  |
+| n	| Array	  |             |
+
+Each object in R has a class. Class determines how functions treat them. There are five basic classes of an objects.
+
+- Integer
+- Numeric (Real numbers)
+- Logical (True/False)
+- Character
+- Complex
+
+## Constants in R
+
+- The simplest type of data object in R is a constant or scalar.
+- A constant or scalar is an object with one value.
+- In R there are five types of constants namely integer, numeric, logical, complex - and string.
+- In addition to these, there are four special type of constants, namely, NULL, NA, Inf and NaN.
+
+## Integer Constants
+n R an integer constant can be created by using suffix L after the constant. For example to create the integer constant 12, we use 12L.
+
+### Examples of integer constants
+
+```{r }
+x<-22   #Assign an integer 12 to the variable x
+x       #Display the value of x on the 
+```
+
+```{r}
+typeof(x)   # determines the type of storage mode of object x
+```
+
+```{r}
+mode(x)
+```
+
+```{r}
+y<-0x11L   # Assign an integer 17 from the hexadecimal representation to variable y
+y
+```
+
+```{r}
+z<-1e4L # Assigne 10000 as an integer to variable z
+z
+```
+
+##Numeric Constants
+Numeric constants consists of an integer part with zero or more digits followed by decimal point (optional) . and a fractional part with zero or more digits (optional) followed by an exponent part consisting of an E or e, an optional sign and an integer constant with zero or more digits. e.g., 2, 35, 0.45, 2e-6, .34, 2.456e+3 are valid numeric constants.
+
+###Examples of numeric constants
+```{r}
+y<-0.45 # Assign the constant 0.45 to the variable y
+y
+```
+
+```{r}
+typeof(y) # determines the type of object y
+```
+
+```{r}
+mode(y)
+```
+
+```{r}
+z<-2e-06
+z
+```
+
+##Logical Constants
+Logical constants are either TRUE or FALSE. Single character can also be used for logical constants i.e., T or F (no quotes).
+
+###Examples of logical constants
+
+```{r}
+Result1<-T # Assign the logical constant 'T' or 'TRUE' to Result 1
+Result1
+```
+
+```{r}
+Result2<-FALSE # Assign the logical constant 'FALSE' to Result2
+Result2
+```
+##Complex Constants
+Complex constants are similar to the numeric constants but they are followed by i. Only pure imaginary numbers are complex constants. e.g. 1i, 0i, 2.3e-1i are valid complex constants.
+
+###Examples of complex constants
+```{r}
+z1<-1i # Assign 1i to the variable z1
+z1
+```
+```{r}
+z2<-0i # Assign 0i to the variable z2
+z2
+```
+```{r}
+z3<-2.3e-1i # Assign 0+0.23i to the variable z3
+z3
+```
+
+##String Constants
+String constants are delimited by a pair of single (') or double quotes (") and can contain all other printable characters. e.g., male, Strongly Agree, Pre-test, T are valid string constants.
+
+###Examples of String constants
+
+```{r}
+gender<-"male" # Assign the string "male" to the variable gender
+gender
+```
+
+```{r}
+Text1<-'Strongly Agree' # Assign the string "Strongly Agree" to the variable Text1
+Text1
+```
+
+```{r}
+Text2<-"Pre-test" # Assign the string "Pre-test" to the variable Text2
+Text2
+```
+
+```{r}
+Text3<-"T" # Assign the string "T" to the variable Text3
+Text3
+```
+
+##Special Constants/Values
+In addition to the above constants, there are four special constants in R. They are
+
+- NULL,
+- Inf or -Inf,
+- NaN and
+- NA.
+
+
+##NULL :
+
+The constant NULL is used to indicate an empty object in R. Examples of NULL.
+
+```{r,echo=T}
+A<-NULL # Assign NULL to the variable A
+A # Display the value of variable A
+```
+
+```{r,echo=T}
+class(A) # display class of A
+```
+
+```{r,echo=T}
+typeof(A) # display storage mode of A
+```
+
+##Infinity (Inf and -Inf)
+
+If a computation in R results in a number that is too big, R will return positive infinity Inf or negative infinity -Inf depending upon the result. Also a non-zero (positive or negative) number divided by zero results infinity ($\infty$ or $\infty$). R denotes $\infty$ by -Inf and $\infty$ by Inf.
+
+###Examples of Infinity
+
+```{r,echo=T}
+2^1024
+```
+
+```{r,echo=T}
+-2^1024
+```
+
+```{r,echo=T}
+1/0
+```
+
+```{r,echo=T}
+-1/0
+```
+
+```{r,echo=T}
+1/Inf
+```
+
+```{r,echo=T}
+50/0
+```
+
+```{r,echo=T}
+-7.6/0
+```
+
+
+##Not a Number NaN
+
+R supports a special value, called NaN, i.e., Not a Number, which indicates that a numerical result is undefined.
+
+###Examples of NaN
+
+```{r,echo=T}
+0/0
+```
+
+```{r,echo=T}
+Inf-Inf
+```
+
+```{r,echo=T}
+Inf/Inf
+```
+
+All above gives NaN, since the result cannot be defined sensibly.
+
+##Not Available NA
+
+R has a particular symbol to indicate the missing value or the value which is not available. R indicate such a value by NA. The result of any arithmetic expression containing NA will produce NA.
+
+###Examples of NA
+
+```{r,,echo=T}
+log(NA) # log is built in function in R
+```
+
+```{r,echo=T}
+NA+10 # This is an arithmetic expression
+```
+
+##Vectors
+
+A basic data structure in R is vector. It is a atomic data structure, where all the stored objects are of same type. Vector can be defined as a set of constants or scalars of same type arranged in a one-dimensional array. In R there are four type of vectors, namely,
+
+- numeric vector (integer or double)
+- character vector
+- logical vector
+- complex vector
+
+Vectors are usually created with c() function. The c() function is known as concatenation or combine.
+
+
+##
+Vectors have four basic properties. They are type, length, mode and structure. Knowledge about these properties are very important while manipulating objects. These properties can be examined using the functions  typeof(), length(), mode() and str().
+
+
+|Property|Command|Meaning|
+|:-------|:--------|:------|
+|Type    |typeof() |	Type of Storage mode of object|
+|Length	 |length()|	Number of elements in object|
+|Mode	|mode()	  |Storage mode of object|
+|Structure	|str()	|Compactly display the structure of object|
+
+The str() function check the internal structure of the R object and print a preview of its content.
+
+##Creating an empty vector
+An empty vector can be created with the vector() function. The function vector(mode,length) produces a vector of the given mode and length.
+
+```{r}
+vec1<-vector(mode="numeric",length=3)
+vec1
+```
+
+```{r}
+vec2<-vector(mode="logical",length=4)
+vec2
+```
+
+```{r}
+vec3<-vector(mode="complex",length=2)
+vec3
+```
+
+```{r}
+vec4<-vector(mode="character",length=5)
+vec4
+```
+
+##Numeric Vector
+Numeric vectors have elements which are numeric (integer or double) values.
+
+```{r}
+data1<-c(2L,3L,5L,7L) # store the values as integer to data1
+str(data1) # display structure
+```
+
+```{r}
+length(data1) # display length
+```
+
+In the above code first line create an object data1, as a vector, containing the entries 2, 3, 5, 7.
+
+
+##
+
+```{r}
+mode(data1) # display mode
+```
+
+```{r}
+typeof(data1) # display storage mode
+```
+
+```{r}
+is.vector(data1)
+```
+
+```{r}
+is.vector(data1,mode="logical")
+```
+
+
+##
+
+```{r, echo = TRUE}
+data2<-c(2,3,5,7)
+length(data2)
+```
+
+```{r, echo = TRUE}
+mode(data2)
+```
+
+```{r,echo = TRUE}
+typeof(data2)
+```
+```{r,echo = TRUE}
+str(data2)
+```
+We can see the difference between the results of typeof() command for data1 and data2
+
+
+## Character Vectors
+
+Character vectors have elements which are character strings, where strings are sequence of characters enclosed in double quotes, **"pre-test"**, or single quotes, **'pre-test'**. The function **nchar()** returns the length of the character strings in a character vector.
+
+```{r,echo = TRUE}
+result<-c("First","Second","Third","Pass","Fail","Second","Pass")
+result
+
+```
+
+```{r,echo = TRUE}
+nchar(result)
+```
+
+```{r,echo = TRUE}
+length(result)
+```
+
+## 
+```{r,echo = TRUE}
+mode(result)
+```
+
+```{r,echo = TRUE}
+typeof(result)
+```
+
+```{r,echo = TRUE}
+str(result)
+```
+
+##Logical Vectors
+
+Logical vectors have elements which are logical character strings T or TRUE and F or FALSE.
+
+```{r,echo = TRUE}
+x<-c(T,F,T,F,T,F)
+x
+```
+```{r,echo = TRUE}
+y<-c(TRUE,FALSE,TRUE,TRUE)
+length(y)
+```
+
+## 
+
+```{r,echo = TRUE}
+mode(y)
+```
+
+```{r,echo = TRUE}
+typeof(y)
+```
+
+```{r,echo = TRUE}
+str(y)
+```
+
+
+Logical vectors can also be created using a logical expression on numeric vector.
+
+##
+
+
+```{r}
+a <- c(1,2,3,5)
+mode(a)
+```
+
+```{r}
+z<-a<2.5 # logical expression
+z
+```
+
+```{r}
+mode(z)
+```
+
+
+
+##Complex Vectors
+
+Complex vectors have elements which are complex constants.
+
+
+
+
+
+
+```{r}
+z1<-c(1i,0i,2+3i,3-4i)
+z1
+```
+
+```{r}
+z2<-c(0,0,1+3i,-4i)
+z2
+```
+
+##
+```{r}
+length(z2)
+```
+
+```{r}
+mode(z2)
+```
+
+```{r}
+typeof(z2)
+```
+
+```{r}
+str(z2)
+```
+
+##
+Some functions associated with complex vectors are
+
+```{r}
+Re(z2) # gives real part of z2
+```
+
+```{r}
+Im(z2) # gives imaginary part of z2
+```
+
+```{r}
+Mod(z2) # gives modulus of z2
+```
+
+```{r}
+Conj(z2) # gives conjugate of z2
+```
+
+
+##Coercion in vectors
+
+R follows two basic rules of coercion
+
+- If a character is present, R will coerce everything else to characters
+- If a vector contains logicals and numbers, R will convert the logicals to numbers (Like TRUE to 1 and FALSE to 0)
+
+R provides a set of explicit coercion functions that allows us to convert one type of data into another
+
+- as.character()
+
+- as.numeric()
+
+- as.logical()
+
+- as.complex()
+
+##
+
+When different objects are mixed in a vector, coercion occurs so that every element in the vector is of the same type.
+
+```{r}
+xx<-c(1.8,"Bob") ## xx is a character vector
+xx
+```
+
+```{r}
+as.numeric(xx)
+```
+
+```{r}
+yy<-c(TRUE, 1.8,-1.2,FALSE,T) ## yy is a numeric vector
+yy
+```
+##
+```{r}
+as.logical(yy)
+```
+
+```{r}
+zz<-c("Bob",TRUE) ## zz is a character vector
+zz
+```
+
+```{r}
+as.logical(zz)
+```
+
+##Vectors operations
+##Generating vectors using : operator
+
+R provides a very useful way of generating a regular sequence of increasing or decreasing values using sequence operator :.
+
+The general expression is n1:n2, which generates sequence of integers ranging from n1 to n2.
+
+It generates a sequence of values n1, n1 + 1, ... , up to the sequence value less than or equal to n2.
+
+##Examples of : operator
+
+```{r}
+x<-2:6 # generate sequence of numbers from 2 to 6
+x 
+```
+
+```{r}
+y<-2.5:6
+y
+```
+In the first case, since the starting value is integer, the sequence operator : generate a sequence of integers from 2 to 6, whereas in the second case the starting value is float, the sequence operator : generate a sequence of floats ranging from 2.5 to 6.
+
+##
+
+```{r}
+z<-2.5:6.9
+z
+```
+It will generate a sequence of real numbers starting with 2.5 to 6.5.
+
+## 
+
+```{r,echo = TRUE }
+x<--3:5 # generate a sequence of integers in increasing order
+
+x
+
+x<-5:-3 # generates a sequence of integers in decreasing order
+x 
+```
+(as precedence of -(unary minus) is higher than that of :).
+
+
+##Generating Vectors using seq() function
+The operator : generate simple sequence of numbers in increasing or decreasing orders. The sequence of numbers with specific pattern can be generated using seq() function.
+
+The general syntax of seq() function is
+
+seq(from, to) or
+
+seq(from, to, by=) or
+
+seq(from, to, length=).
+
+
+##Examples of seq() function
+```{r,echo=TRUE}
+seq(1,8) # generates a regular sequence from 1 to 8
+
+# generates a regular sequence from 1 to 8 with increment 2
+seq(1,8,by=2)
+
+# generates a regular sequence from 8 to 1 with decrement 2
+seq(8,1,by=-2)
+
+```
+##
+```{r ,echo=TRUE}
+# generates a sequence of 3 numbers from 1 to 8 with equal spacing
+seq(1,8,length=3)
+seq(0,2,length=5)
+seq(from=0,to =2,length=10)
+```
+It will calculate by value as \(\frac{\text{to}-\text{from}} {\text{length}-1}=0.2222222\).
+
+
+##Repeating vectors using rep() function
+
+A very useful function to create a vector by repeating a given number/vector with specified number of times is the rep() function. The general structure of rep() function is
+
+rep(v1,n1).
+
+Here vector v1 is repeated n1 times. The forms of rep() function are
+
+
+- rep(v1, times=)
+- rep(v1, each=)
+- rep(v1, length=)
+  
+  
+##Examples of rep() function
+
+```{r, echo = TRUE}
+rep(0,5) #replicates 0 five times
+```
+The constant 0 is repeated 5 times.
+```{r, echo = TRUE}
+rep(1:3,times=3) # replicates 1 to 3 numbers 3 times
+```
+The sequence 1:3 that is 1,2,3 is repeated 3 times.
+
+## 
+```{r,echo=TRUE}
+rep(1:3,each=3) #each number 1 to 3 is replicated three times
+```
+
+Each element from the sequence 1,2,3 is repeated 3 times.
+```{r,echo=T}
+# generate a vector 1,2,3
+x<-1:3
+# vector x is replicated such that the length is five.
+rep(x, length=5)
+
+```
+
+Here the vector x is recycled until you get the specific length.
+
+## 
+
+```{r,echo=T}
+# replicate each element of x twice until you get length of 4
+rep(x,each=2,length=4)
+```
+
+```{r,echo=T}
+# replicate each element of x twice until you get length of 8 (two elements recycled)
+rep(x,each=2,length=8)
+
+```
+
+```{r,echo=T}
+rep(x,each=2,length=5) # one element recycled
+
+```
+
+## 
+
+
+```{r,echo=T}
+rep(x,each=2,times=6)
+```
+
+
+```{r,echo=T}
+rep(x,times=6,each=2)
+```
+
+
+
+```{r,echo=T}
+rep(x,times=6,length=10)
+```
+
+## 
+```{r,echo=T}
+rep(x,each=6,length=10)
+```
+
+
+```{r,echo=T}
+x
+```
+
+
+```{r,echo=T}
+rep(x,c(2,1,3)) # 1 is replicated 2 times, and so on
+```
+
+##Matrix
+A matrix is a two-dimensional data structure in R. It is a set of elements appearing in rows and columns. All the elements of the matrix must be of same mode (logical, numeric, complex or character). A matrix can be created with the function matrix:
+
+>matrix(data=NA, nrow=r, ncol=c, byrow=FALSE, dimnames=NULL)
+
+* By default matrices are created with their values running down successive column.
+* It is also possible to specify that the matrix be filled by rows using byrow=TRUE.
+* The option dimnames allows to give names to the rows and columns.
+
+
+##Some attributes related to matrix (or data)
+
+|Function||Description|
+|:--------|--|:-----------|
+|class(x)||Gives the class of object x as matrix|
+|typeof(x)||Gives the type of data stored in matrix|
+|dim(x)||Sets or changes the dimension of x|
+|str(x)||Gives the structure of a matrix|
+|nrow(x)||Gives the number of rows of a matrix|
+|ncol(x)||Gives the number of columns of a matrix|
+|rowname(x)||Gives row names of a matrix
+|colnames(x)||Gives column names of a matrix
+
+##Creating an empty matrix
+
+An empty matrix can be created by specifying the number of rows and number of columns of a matrix. The dim(x) function either sets or changes the dimension of object x.
+
+```{r}
+AE<- matrix(nrow =3 ,ncol = 4)
+AE
+```
+```{r}
+dim(AE) # dim function display the dimension of matrix
+```
+
+##
+
+
+```{r}
+ncol(AE)  # gives the number of columns of given matrix
+```
+```{r}
+class(AE)
+
+
+typeof(AE)
+str(AE)
+```
+
+##
+
+Zero matrix can be created by specifying the element 0 and the number of rows and columns of a matrix.
+```{r}
+A0<-matrix(0,nrow=3,ncol=4)
+A0
+
+dim(A0) # dim function display the dimension of matrix
+
+nrow(A0) # gives the number of rows of given matrix
+```
+
+##Creating a matrix from a sequence of numbers
+By default, elements of sequence can be filled in a matrix column-wise.
+
+```{r}
+B0<-matrix(1:9,nrow=3,ncol=3)
+B0
+```
+
+**Note:** Number of elements should be in multiples of number of rows or columns, otherwise R display warning message.
+
+##
+Elements of sequence can also be filled in a matrix row-wise by specifying byrow=T.
+```{r}
+B01<-matrix(1:9,nrow=3,byrow=T)
+B01
+```
+##Creating a matrix from vector
+Another way to create a matrix in R is to convert a vector into a matrix by specifying number of rows nrow or number of column ncol.
+```{r}
+v1<-c(1,2,3,4,5,6)
+A1 <- matrix(v1, nrow = 3)
+A1
+
+str(A1)
+```
+##
+
+Specifying byrow=T argument.
+```{r}
+B1 <- matrix(v1, nrow = 3, byrow = T)
+B1
+
+nrow(B1) # Display number of rows
+typeof(B1) # Display storage mode
+```
+
+##Creating a Matrix from vector using a dimension attributes
+A matrix can also be constructed from a vector by setting the dimension attribute of given vector. Assigning a dimension to a vector treats it as a matrix of specified dimension.
+
+```{r}
+da1<-c(1, 2, 3, 4, 5, 6) # define a vector
+da1
+
+dim(da1)<-c(2,3) # set dimension of vector da1 as 2 rows and 3 columns
+da1
+```
+
+##Creating a matrix with dimension
+**names**
+
+Rows and columns of a matrix can be labelled using dimnames() command.
+```{r}
+C1 <- matrix(c(20, 15, 10, 40), nrow = 2,
+dimnames = list(c("Male","Female"),
+c("Smoker", "Non-smoker")))
+C1
+```
+##
+
+```{r}
+dim(C1)
+dimnames(C1)
+```
+
+##
+
+Row names and column names of a matrix can also be assigned using rownames() and colnames() function.
+```{r}
+da1
+
+rownames(da1)<-c("R1","R2");colnames(da1)<-c("C1","C2","C3")
+dimnames(da1)
+```
+
+##Creating a matrix using cbind() and rbind() function
+
+Matrix can also be created using cbind() (column-binding) or rbind() (rowbinding) functions.
+
+```{r}
+C3 <- cbind(c(1, 2), c(3, 4)) # combine coulmns
+C3
+
+C4 <- rbind(c(1, 2), c(3, 4)) # combine rows
+C4
+```
+
+##
+
+cbind() and rbind() can also be use to combine two or more matrices.
+
+```{r}
+C5<-cbind(C3,C4) # combine two matrices using cbind
+C5
+
+C6<-rbind(C3,C4) # combine two matrices using rbind
+C6
+```
+
+##Accessing elements of matrix
+
+Elements of a matrix can be accessed by specifying row number(s) and/or column number(s). Like
+
+* mat1[i,] returns <em>i^th^</em> row,
+* mat[,j] returns j^th^ column and
+* mat1[i,j] returns (i,j)^th^ element of matrix.
+
+```{r}
+mat1<-matrix(1:9,nrow=3,byrow=TRUE)
+mat1
+```
+##
+
+```{r}
+mat1[2,3] # returns value from mat1 in the 2nd row and 3rd column
+mat1[1,] # returns 1st row of matrix mat1
+mat1[,3] # returns 3rd column of matrix mat1
+mat1[1:2,3] # returns the value from mat1 in the first 2 rows ad 3rd column
+
+```
+
+##Matrix Operations in R
+
+* Arithmetic operations on matrices are element-wise: +, -, *,/
+* Matrix multiplication: *%\*%*
+* Transpose of a matrix : t()
+* To solve the system of linear equations *Ax=b: solve(A,b)*
+* To find the inverse of a matrix A^-1^ : solve(A)
+* To computes eigen values and eigen vectors: eigen()
+* To compute determinant of a matrix: det(A)
+
+##Addition/subtraction of matrices
+
+```{r}
+A <- matrix(c(1, 2, 3, 4), nrow = 2)
+B <-matrix(c(4, 5, 5, 3), nrow = 2)
+A+B # Addition of two matrices
+
+A-B # Difference of matrix B from A
+
+```
+
+##Matrix multiplication
+
+A\*A gives a new matrix with element-wise multiplication, where as A%*% A gives actual matrix multiplication.
+
+```{r}
+A
+
+A*A # Elementwise multiplication
+```
+
+##
+
+```{r}
+A
+A%*%A # Matrix Multiplication
+```
+
+## **Transpose of a Matrix**
+```{r, echo=T}
+A <- matrix(c(1,2,3,4), nrow=2)
+A
+t(A)
+```
+
+## **Inverse of a matrix**
+The arithmetic operations on matrices are element-wise. Hence if we use A ^-1^, R will calculate a new matrix as a reciprocal of each element of matrix A.
+
+Inverse of a square matrix can be computed using solve() function.
+
+```{r, echo=T}
+A^(-1)
+solve(A)
+```
+
+
+## **Determinant of a matrix**
+
+```{r, echo=T}
+A
+det(A)
+```
+
+
+## **Eigen values and eigen vectors of a matrix**
+
+```{r, echo=T}
+eigen(A)
+eigen(A)$vectors
+
+```
+
+
+## **Array**
+Matrix is two dimensional object. When there are more than two dimensions, we use array to store such a data. Thus arrays are similar to matrices, but have more than two dimensions.
+
+The general structure of **array()** function is
+
+>**array(data=NA,dim=length(data),dimnames=NULL)**
+
+* data: a vector giving data to fill the array.
+* dim: the dimension attributes for the array to be created.
+* dimnames: dimension names.
+
+
+##**Creating an Array**
+
+```{r, echo=T}
+data<-1:12
+myarray<-array(data,dim=c(2,3,2))
+class(myarray)
+mode(myarray)
+```
+
+##
+```{r, echo=T}
+myarray
+dimnames(myarray)
+```
+
+##**Arrays with dimension names**
+
+```{r, echo=T}
+d1<-c("A1","A2","A3") 
+d2<-c("B1","B2") 
+d3<-c("C1","C2") 
+myarray<-array(data,c(3,2,2),dimnames=list(d1,d2,d3))
+dimnames(myarray)
+```
+
+##
+
+```{r, echo=T}
+myarray
+data<-1:10
+data
+```
+
+##
+
+Suppose we want to create an array of dimension (2,3,2) from vector data. So total **2??=12** elements are required.
+
+The length of data is shorter than the specified dimension. So the values of data are recycled from the beginning again to make it an array of desired dimension.
+
+```{r, echo=T}
+myarray<-array(data,dim=c(2,3,2))
+myarray
+
+```
+
+##
+
+
+```{r, echo=T}
+data<-1:13
+data
+```
+If the length of data is larger than the specified dimension, then additional data values are omitted while creating an array.
+
+```{r, echo=T}
+myarray<-array(data,dim=c(2,3,2))
+myarray
+```
+##**Creating an array from a vector using dim**
+
+An array can also be created from a vector by assigning the dimension to a given vector.
+
+```{r, echo=T}
+vec1<-1:12
+is.array(vec1)
+dim(vec1)<-c(3,2,2) # convert vec1 to array of specified dimension
+is.array(vec1)
+```
+
+##
+
+```{r, echo=T}
+vec1
+```
+
+##**Array Indexing**
+
+Elements of a array can be accessed by specifying row number(s) and/or column number(s) and/or strata number. Like
+
+* myarray[i, ,] returns i^th^ row,
+* myarray[,j,] returns j^th^ column and
+* myarray[i,j,] returns elements from i^th^ row and j^th^ column and
+* myarray[i,j,k] returns (i,j,k)^th^ element of an array.
+* That is, if any index position is given as empty, then the full range of that subscript is displayed.
+
+##
+
+```{r, echo=T}
+myarray<-array(1:12,dim=c(3,2,2))
+myarray
+```
+
+##
+
+```{r, echo=T}
+myarray[2,,]
+myarray[,2,]
+
+```
+##
+```{r, echo=T}
+myarray[2,2,]
+myarray[,2,2]
+myarray[2,2,1]
+
+```
+##
+
+```{r, echo=T}
+myarray[1:2,2,]
+myarray[2,1:2,]
+```
+
+##**List**
+Lists in R are a generic vectors where each element can be any type of object; e.g., a vector (of any mode), a matrix, a data frame or a function. Because of this flexibility, lists are the basis for most complex objects in R.
+
+The function to create list is
+
+>**list(name_1=object_1, name_2=object_2, ...,name_m=object_m)**
+
+If names are omitted, the component of lists are numbered only.
+
+##
+
+```{r,echo=T}
+list1<-list(1.34,c("Bob","John"),TRUE,1+2i)
+list1
+```
+##
+
+```{r,echo=T}
+length(list1) # display the no. of top level components
+```
+
+```{r,echo=T}
+mode(list1) # display the mode of list1
+```
+
+```{r,echo=T}
+is.list(list1)
+```
+
+##
+
+Every component of a list is a vector. The double bracket [[1]] is the first component of the list having one element. The [[2]] is the second component of a list having two elements.
+
+```{r,echo=T}
+
+list2<-list(value=1.34,names=c("Bob","John"),TRUE,1+2i)
+list2
+```
+
+##Referencing elements of list
+
+The components in a list are given numbers or given names. Hence the components may be referred by its number or name.
+
+The component of a list is referred by
+
+- its number like list2[[2]] or
+- its name like list2$name or
+- its name like list2[["name"]]
+
+The element of component is referred by
+
+- list2[[2]][1] or
+- list2$name[1].
+
+##
+
+```{r,echo=T}
+list2[[1]] # display 1st component of list2
+```
+
+
+```{r,echo=T}
+list2[["value"]]
+```
+
+
+```{r,echo=T}
+list2$names # display component whose name is 'names'
+```
+
+
+```{r,echo=T}
+list2$names[1] # display 1st element of component whose name is 'names'
+```
+
+##
+
+```{r,echo=T}
+list2[[2]][1] # display 1st element from 2nd component of list2
+```
+
+```{r,echo=T}
+list2[2] # display all elements of 2nd component
+```
+
+
+```{r,echo=T}
+list2[[2]] # display all elements of 2nd component
+```
+
+##Factors
+
+Factors are used to represent categorical data (nominal or ordinal).
+
+- **Nominal variables** are categorical where order is not important, e.g., Gender ("Male" or "Female") of a respondent is an example of nominal data.
+
+- **Ordinal variables** are also categorical but the order is important, e.g., Socio economic status (SES) of a respondent ("LES", "MES" or "HES") is an example of ordinal data. Respondent with "LES" is having less earning than respondent with "MES"
+
+The function factor() is used to store the variable as factor variable. R internally stores the categorical values as a vector of integers in the range 1,2,???,k
+, where k is the number of unique values in the variable and map these values to the categorical values.
+
+##
+
+```{r,echo=T}
+gender<-c("Male","Male","Female","Male","Female")
+gender<-factor(gender) # Store this as (2,2,1,2,1)
+str(gender) # display the structure of gender
+```
+
+The statement gender<-factor(gender) store gender as vector (2,2,1,2,1) and associate it with 1= Female and 2 = Male.
+
+##
+
+```{r,echo=T}
+mode(gender)
+```
+
+
+```{r,echo=T}
+class(gender) # display the class of gender
+```
+
+
+```{r,echo=T}
+levels(gender) # display the levels of gender
+```
+
+##
+
+If the levels are not specified, R assigns the levels to the factor variable alphabetically.
+
+The sequence of levels can be set using the levels argument to *factor()* function.
+
+```{r,echo=T}
+gender<-c("Male","Male","Female","Male","Female")
+gender<-factor(gender,levels=c("Male","Female"))
+gender
+```
+
+##
+
+```{r,echo=T}
+str(gender) # display the structure of gender
+```
+
+
+```{r,echo=T}
+class(gender) # display the class of gender
+```
+
+
+```{r,echo=T}
+attributes(gender) # display attributes of gender
+```
+
+##
+
+Sometime the categorical variable is coded as numeric. For example we coded male as 0 and female as 1 for the data ("M","M","F","M","F") as (0,0,1,0,1). Then such coded data can also be converted to factor using factor() function by specifying the levels.
+
+
+```{r,echo=T}
+gen<-c(0,0,1,0,1)
+fgen<-factor(gen,levels=0:1)
+fgen
+```
+
+##
+
+Levels can also be assigned using level() function.
+
+```{r,echo=T}
+levels(fgen)<-c("M","F") # set levels
+fgen
+```
+
+
+```{r,echo=T}
+as.numeric(fgen)
+```
+
+The function as.numeric() extract the numerical coding as numbers 1 and 2. Note that the original input values are 0 and 1.
+
+##Ordered factor
+
+Ordered factor is used when we have a qualitative data but the levels are assumed to be ordered. Like socio economic status of students.
+
+
+```{r,echo=T}
+ses<-c("MES","LES","HES","MES","LES","LES")
+ses.factor<-factor(ses,ordered=TRUE)
+ses.factor
+```
+
+Since the levels are not specified, R assigns alphabetically.
+
+##
+
+In order to get proper ordered factors, we have to specify the levels in proper order.
+
+```{r,echo=T}
+ses<-c("MES","LES","HES","MES","LES","LES")
+ses.factor<-factor(ses,levels=c("LES","MES","HES"),ordered=TRUE)
+ses.factor
+```
+
+##
+
+Some additional functions for factors
+
+- is.factor(x) : Check whether x is factor
+- as.factor(x) : Convert x to factor
+- is.ordered(x): Check whether x is ordered factor
+- as.ordered(x): Convert x to ordered factor
+
+
+```{r,echo=T}
+is.ordered(ses.factor)
+```
+
+
+```{r,echo=T}
+is.factor(ses.factor)
+```
+
+##
+
+
+```{r,echo=T}
+xnew<-c("Male","Male","Female","Male","Female")
+is.factor(xnew) # check whether xnew is factor
+```
+
+
+```{r,echo=T}
+class(xnew) # display the class of xnew
+```
+
+##
+
+```{r,echo=T}
+xnew<-as.factor(xnew) # convert xnew to factors
+xnew
+```
+
+
+```{r,echo=T}
+is.factor(xnew)
+```
+
+
+```{r,echo=T}
+is.ordered(xnew)
+```
+##
+
+```{r}
+age<-c(10,20,25,12,30,45,50,26,24,13,26,47,48,50)
+ageGroup<-cut(age,breaks=c(0,20,30,50))
+ageGroup
+```
+
+```{r}
+str(ageGroup)
+```
+
+
+##
+```{r}
+is.factor(ageGroup)
+```
+```{r}
+is.ordered(ageGroup)
+```
+
+```{r}
+attributes(ageGroup)
+```
+##
+```{r}
+class(ageGroup)
+```
+```{r}
+table(ageGroup) # Tabulate the variable ageGroup
+```
+
+##Generate Factor Levels
+
+The function gl() generates regular series of factors.
+
+The general structure of gl() is
+
+gl(n, k, length = n*k, labels = seq_len(n), ordered = FALSE)
+
+- **n** : an integer giving the number of levels,
+
+- **k** : an integer giving the number of replications,
+
+- **length** : an integer giving the length of the result,
+
+- **labels** : vector of labels for the resulting factor,
+
+- **ordered** : whether the result should be ordred or not.
+
+##
+```{r}
+gl(2,6)
+```
+
+It generates two levels 1 and 2, each level six times.
+
+```{r}
+gl(3,4,length=14)
+```
+
+```{r}
+gl(2,4,label=c("Smoker","Non-smoker"))
+```
+
+Generates two levels Smoker and Non-smoker, each replicated six times.
+
+
+##Data Frame
+
+Data frames are like matrices except that the columns are allowed to be of different types. Data frames can be constructed using the function data.frame(). It converts collection of vectors or a matrix into a data frame.
+
+Each row in the data frame corresponds to different observational units and each column in the data frame corresponds to different variables.
+
+**Function**            **Output**
+----------------------  ----------------------
+names(dataframe)          Display the names of the variables of the data frame
+str(dataframe)            Explore the data structure of a data frame
+dim(dataframe)            Display the dimension of a data frame
+class(dataframe)          Display the class of a data frame
+is.data.frame(dataframe)  Check whether the argument is data frame
+as.data.frame(x)          Convert argument x to data frame
+attributes(dataframe)     access attributes of data frame
+
+
+##Creating a data frame
+
+Suppose we have some data about the students as follows:
+
+|**name**|    **sex** |   **age** |  **weight** |
+|:-------:|:---------:|:---------:|:------------:|
+  |A      |M          |10         |26       |
+  |B         |F          |10            |35|
+  |C         |F          |12            |28|
+  |D         |M          |14            |30|    
+  |E         |M          |16            |31|
+  |F         |F          |15            |29|
+  |G         |M          |17            |34|
+  
+  
+
+##Creating a data frame directly using data.frame() function 
+
+```{r}
+student<-data.frame(
+name=c("A","B","C","D","E","F","G"),
+sex=c("M","F","F","M","M","F","M"),
+age=c(10,20,12,14,16,15,17),
+weight=c(26,35,28,30,31,29,34))
+str(student) # display structure of a data frame
+
+```
+##
+```{r}
+attributes(student)
+```
+```{r}
+head(student,3) # display top 3 rows of a data frame
+```
+
+
+
+##Creating a data frame from vectors
+
+Data frame can also be created from vectors. To construct a data frame from the above data, begin by constructing four vectors corresponding to each column of the data.
+
+```{r}
+name<-c("A","B","C","D","E","F","G")
+sex<-c("M","F","F","M","M","F","M")
+age<-c(10,20,12,14,16,15,17)
+weight<-c(26,35,28,30,31,29,34)
+```
+
+
+
+##
+Use a data.frame() function to combine all the four vectors into a single data frame entity.
+
+The data.frame function creates an object called student and within that it stores values of the four variables name, sex, age and weight.
+
+```{r}
+student<-data.frame(name,sex,age,weight)
+class(student) # display class of a data frame
+```
+
+##
+The function names() display the name of each variable in a data frame. The str() function display status of each variable in a data frame.
+
+```{r}
+names(student) # display the names of the variable from the data frame
+```
+
+
+```{r}
+str(student) # Display the structure of a data frame
+```
+
+
+
+##Creating a data frame from list()
+
+Create a list of students using all the four vectors defined above. Then create a data frame from a list.
+```{r}
+# Make a list from a vector
+student.list<-list(name=name,sex=sex,age=age,weight=weight)
+class(student.list)
+```
+
+```{r}
+student<-data.frame(student.list) # make a data frame from list
+str(student) # display the structure of a data frame
+```
+
+##
+```{r}
+dim(student) # display dimension of a data frame
+```
+```{r}
+attributes(student)
+```
+
+
+##Operators in R
+
+
+##Arithmetic Operators
+
+The following symbols are used as arithmetic operators in R language:
+
+|**Operator Symbols**|**Arithmetic Operation** | 
+|:-------:|:---------|
+|+| Addition|
+|-| Subtraction|
+|*| Multiplication|
+|/| Division|
+|^| Raise to power(exponentiation)
+|%/%| Integer division|
+|%%| Reminder from integer division
+
+
+
+##Examples of Arithmetic Operations
+```{r}
+x<-c(1,2,3,4)
+x 
+```
+
+```{r}
+x+5 # 5 is added to each element of x
+```
+
+```{r}
+x-2 # 2 is subtracted from each element of x
+```
+
+##
+```{r}
+x*2 # each element of x is multiplied by 2
+```
+
+```{r}
+x/2 # each element of x is divided by 2
+```
+
+```{r}
+x%/%2 # integer division on dividing each element by 2
+```
+
+```{r}
+x%%2 # Remainder from integer division
+```
+
+##
+```{r}
+x<-c(1,2,3,4); y<-c(1,2,3)
+x+y
+```
+
+```{r}
+x-y
+```
+
+##
+sum( ) and mean( ) are built in function to compute sum and mean respectively.
+
+```{r}
+sum(x)
+```
+```{r}
+sum(x)/length(x)
+```
+
+```{r}
+sum(x^2)
+```
+
+```{r}
+sum((x-mean(x))^2)
+```
+
+
+##Relational Operators
+
+The following symbols are used to represent relational operations in R language:
+
+
+|**Operator Symbols**|**Relational Operation** | 
+|:-------:|:---------|
+|==| Equals to|
+|!=| Not equal to|
+|<| Less than|
+|>| Greater than|
+|<=| Less than or equal to|
+|>=| Greater than or equal to|
+
+##
+```{r}
+x<-c(12,10,8,16,6)
+x<8
+```
+```{r}
+x==10
+```
+
+```{r}
+x<=8
+```
+## 
+
+```{r}
+x<-c(12,10,8,16,6)
+x[x>8]
+```
+
+```{r}
+x[x!=10]
+```
+```{r}
+x[x<=8]
+```
+## 
+
+```{r}
+x<-c(12,10,8,16,6)
+y<-c(10,12,8,18,6)
+x==y
+```
+
+
+```{r}
+y-2
+```
+
+
+```{r}
+x<=y-2
+```
+
+##Logical Operators
+
+The following symbols are used to represent logical operators in R language.
+
+| **Operator Symbols** | **Relational Operation Example** | 
+|:--------------------:|:--------------------------------:|
+|!|logical NOT !x      |
+|&|logical AND x& y    |
+|&&|logical AND x && y  |
+|\||logical OR x | y   |
+|\|\||logical OR x || y |
+|xor\||exclusive OR xor(x,y)|
+
+The shorter form & performs element-wise comparison, whereas the longer form && evaluates left to right examining only the first element in each vector.
+
+##
+
+```{r}
+x<-c(12,10,8,16,6)
+x<=8 & x >=5
+```
+```{r}
+x<=8 && x >=5
+```
+```{r}
+x>=8 | x <=6
+```
+```{r}
+x>=8 || x <=6
+```
+
+## 
+
+```{r}
+x<-c(12,10,8,16,6)
+y<-c(10,12,8,18,6)
+x<=y & x >=10
+```
+```{r}
+x<=y && x >=10
+```
+```{r}
+x>=y | x <=12
+```
+```{r}
+x>=y || x <=12
+```
+
+##
+
+```{r}
+x<-c(12,10,8,16,6)
+y<-c(10,12,8,18,6)
+x[x<=10 & x >=8]
+```
+```{r}
+x[x!=y & x <y]
+```
+```{r}
+y[x!=y & x <y]
+```
+
+##Built-in Functions
+
+##Built-in Mathematical functions
+
+| **Function** |	**Operation Performed** |
+|:-------------|:-------------------------|
+|sqrt(x)|	Square root of x|
+|abs(x)|	Absolute value of x|
+|exp(x)|	Exponential value of x|
+|log(x)|	Logarithm value of x|
+|log10(x)|	Logarithm of x (base 10)|
+|ceiling(x)|	Closest integer not less than x|
+|floor(x)|	Closest integer not greater than x|
+|round(x,n) |	Round x to n significant places|
+|rev(x) |	reverse the elements of x|
+|sort(x) |	sort the elements of x in increasing order|
+|rank(x) |	assign ranks to the elements of x|
+
+
+##Built-in Mathematical functions
+
+| **Function** |	**Operation Performed** |
+|:-------------|:-------------------------|
+|sin(x)|	sine value of x|
+|cos(x)|	cosine value of x|
+|tan(x)|	tangent value of x|
+|asin(x)|	arc-sine value of x|
+|acos(x)|	arc-cosine value of x|
+|atan(x)|	arc-tangent value of x|
+|sinh(x)|	hyperbolic sine of x|
+|cosh(x)|	hyperbolic cosine of x|
+|tanh(x)|	hyperbolic tangent of x|
+|asinh(x)|	hyperbolic arc-sine of x|
+|acosh(x)|	hyperbolic arc-cosine of x|
+|atanh(x)|	hyperbolic arc-tangent of x|
+
+##Built-in Special Functions
+
+| **Function** | **Operation Performed** |
+|:-------------|:-------------------------|
+|beta(a,b)|	Beta function|
+|lbeta(a,b)|	Logarithm of beta function|
+|gamma(a)|	Gamma function|
+|lgamma(a)|	Logarithm of gamma function|
+|choose(n,k)|	Binomial coefficient|
+|lchoose(n,k)|	Logarithm of Binomial Coefficient|
+|factorial(x)|	Factorial of x i.e. x!|
+|lfactorial(x)|	Logarithm of Factorial of x i.e. log(x!)|
+
+##Built-in Statistical Functions
+
+|**Function**|**Operation Performed**|
+|:-------------|:-------------------------|
+|length(x)|	Length of object x|
+|sum(x)|	Sum of elements of x|
+|prod(x)|	Product of elements of x|
+|mean(x)|	Mean of x|
+|weighted.mean(x,w)|	Weighted mean of x with weights w|
+|median(x)|	Median of x|
+|sd(x)|	Std. Dev. of x|
+|var(x)|	Varance of x|
+|mad(x)|	Mean absolute deviation of x|
+|IQR(x)|	Inter Quartile Range of x|
+
+
+##Built-in Statistical Functions
+
+|**Function**|**Operation Performed**|
+|:-------------|:-------------------------|
+|max(x)|	Maximum of all the elements of x|
+|min(x)|	Minimum of all the elements of x|
+|range(x)|	Return minimum and maximum of x|
+|quantile(x,probs=)|	Quantiles of x|
+|cov(x,y)|	Covariance between x and y|
+|cor(x,y)|	Correlation between x and y|
+|fivenum(x)|	Returns five number summary of x|
+|cumsum(x)|	Cumulative sum of elements of x|
+|cumprod(x)	Cumulative product of elements of x|
+
+

@@ -1,0 +1,46 @@
+---
+title: "2wayano"
+author: "Dhruv Patel"
+date: "03/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(readr)
+
+```
+
+```{r}
+
+weights <- read.csv(file.choose(),sep = ",",header = T)
+attach(fb)
+
+```
+```{r}
+names(weights) <- c("w1","w2","std","class")
+weights
+```
+```{r}
+library("ggpubr")
+ggboxplot(weights, x = "std", y = "w1", color = "class")
+```
+```{r}
+
+res.aov2 <- aov(w1~class+std,data=weights)
+summary(res.aov2)
+
+```
+
+
+```{r}
+res.aov2$coefficients
+
+```
+
+
+

@@ -1,0 +1,63 @@
+̥---
+title: "One_Way_Anova"
+author: "Dhruv Patel"
+date: "03/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readr)
+```
+## we have already imported the data into a .csv file containing 2 columns having weight of 2 different football teams,
+## we want to analyse if there is any correlation between them.
+
+```{r}
+fb <- read.csv(file.choose(),sep = ",",header = T)
+attach(fb)
+
+```
+```{r}
+fb
+```
+
+```{r}
+names(fb) <- c("w1","l1")
+typeof(fb)
+```
+
+```{r}
+
+boxplot(w1~l1,data = fb)
+
+
+```
+
+```{r}
+ks.test(w1,l1,data=fb)
+
+```
+
+```{r}
+oneWayAov <- aov(w1~l1,data=fb)
+
+```
+
+```{r}
+summary(oneWayAov)
+
+```
+```{r}
+oneWayAov$coefficients
+```
+
+
+
+
+```{r}
+TukeyHSD(oneWayAov)       # for all possible pairs
+```
+

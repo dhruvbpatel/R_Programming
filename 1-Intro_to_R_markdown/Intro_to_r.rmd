@@ -1,0 +1,305 @@
+---
+title: <center><span style="color:red">Course Plan</span></center>
+author:  <center><span style="color:Blue">Dhruv Patel</span></center>
+date :  <center><span style="color:blue">05 June ,2019</span></center>
+output: 
+  html_document: 
+    toc: yes    # for table of contents
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+  
+
+<center>
+
+## Ganpat University
+## Institute of Computer Technology
+##  Computer Science and Engineering Department
+
+# **Course Execution Plan**    
+<!-- for making text bold  -->
+
+ 
+</center>
+
+| Attribute       |Information |
+|:----------|:-----------|
+|Faculty Name     | Prof Parh Parekh      |
+| Subject         | R programming         |
+| Semester        | 5Th semester          |
+|Lectures         | 3(3 housrs)/week      |
+| Practical       | 1(2 hours)/week       |
+| Credit          | 4                     |
+
+
+## **Learning Outcome**
+After successful completion of the course students should be able to:
+
+* Understand the basics in R programming in terms of constructs, control statements, string functions
+
+* Understand the use of R for Big Data analytics
+
+* Learn to apply R programming for Text processing
+
+* Able to appreciate and apply the R programming from a statistical perspective
+
+```{r cars}
+
+```
+
+## **Course Outline**
+This course moves very quickly. To keep up, it is essential that you complete the assigned readings prior to class, and that you work through the end-ofchapter problems along the way. Solutions to internal exams and quizes included in the course packet will be posted on the Moodle.
+
+
+ > Week 1
+
+### **Introduction**
+* Introducing to R
+
+* R Data Structures
+
+* Help functions in R
+
+* Vectors
+
+* Scalars
+
+* Declarations
+
+* recycling
+
+* Common Vector operations
+
+* Using all and any
+
+* Vectorized operations
+ 
+
+> Week 2
+
+* NA and NULL values
+
+* Filtering
+
+* Vectorised if-then else
+
+* Vector Equality
+
+* Vector Element names
+
+> Week 3
+
+### **Matrices, Arrays And Lists**
+
+* Creating matrices
+
+* Matrix operations
+
+* Applying Functions to Matrix Rows and Columns
+
+* Adding and deleting rows and columns
+
+* Vector/Matrix Distinction
+ 
+> Week 4
+
+* Avoiding Dimension Reduction
+
+* Higher Dimensional arrays
+
+* lists
+
+* Creating lists
+
+* General list operations
+  
+> Week 5
+
+* Accessing list
+
+* components and values
+
+* applying functions to lists
+
+* recursive lists
+
+> Week 6
+
+### **Data Frames**
+
+* Creating Data Frames
+
+* Matrix-like operations in frames
+
+* Merging Data Frames
+
+* Applying functions to Data frames
+
+* Factors and Tables
+
+* factors and levels
+
+> Week 7
+
+* Common functions used with factors
+
+* Working with tables
+
+* Other factors and table related functions
+
+* Control statements
+
+* Arithmetic and Boolean operators and values
+
+* Default values for arguments
+
+* Returning Boolean values
+
+
+> Week 8 
+
+* functions are objects Environment and Scope issues
+
+* Writing Upstairs
+* 
+Recursion
+
+* Replacement functions
+
+* Tools for composing function code
+
+* Math and Simulations in R
+
+> Week 9 
+
+### **OOP**
+
+* S3 Classes, S4 Classes
+
+* Managing your objects
+
+* Input/Output
+
+* accessing keyboard and monitor
+
+* reading and writing files
+
+* accessing the internet
+
+
+> Week 10
+
+* String Manipulation
+
+* Graphics
+
+* Creating Graphs
+
+* Customizing Graphs
+
+* Saving graphs to files
+
+* Creating three-dimensional plots
+
+> Week 11
+
+### **Interfacing**
+
+* Interfacing R to other languages
+
+* Parallel R
+
+* Basic Statistics
+
+* Linear Model
+
+> Week 12
+
+* Generalized Linear models
+
+* Non-linear models
+
+* Time Series and Auto-correlation
+
+* Clustering
+
+
+## **Text Books**
+(@) Norman Matloff, **“The Art of R Programming: A Tour of Statistical Software Design”** , No Starch Press, 2011.
+
+(@) Jared P. Lander, **“R for Everyone: Advanced Analytics and Graphics”** , Addison-Wesley Data & Analytics Series, 2013.
+
+## **Evaluation**
+Course grade will depend on continuous evaluation basis and performance in the class and Course evaluation of marks will be based on the following deliverables:
+
+### **Grading Policy**
+
+> Theory(100 Marks)
+
+
+| Padagogy | Frequency       |Marks     |
+|:----------|:-------:|:----------------|
+| Internal Exam	   |  2 | 20 Marks      |
+|Attendance	       | -  |    10 Marks   |
+| Assignment	     |  1 | 10 Marks      |
+| University Exam	 |1   | 60 Marks      |
+
+
+
+> Practical(50 Marks)
+
+| Padagogy     | Frequency  |Marks         |
+|:-------------|:----------:|:-------------|
+| Practicals	   |  10      | 15 Marks     |
+|Attendance	     | -        |    5 Marks   |
+| Take Away Tasks|  1       | 10 Marks     |
+| Practical Exam |2         | 10 Marks     |
+| Viva Exam	     |1         | 10 Marks     |
+ 
+
+
+Course will be graded out of 100 marks and above table shows the significance weight of continuous performance system in marks. The grades will be in accordance with Ganpat university policy.
+
+## **Supplementary materials**
+In case, if text book sounds uncomfortable or due to lack of access of text book if any one fail to follow the text book then supplementary materials will be provided on moodle as and when the topic covered in class "*" denotes optional readings.
+
+## **Prerequisites**
+Students are requested to go through the content covered in R Programming. It is essential to have hands on practice of programming languages. Students are also recommended to refer MATLAB and python tool and its programs.
+
+## **End Semester Exam**
+Ganpat University will conduct end semester exam and cover the entire course.
+
+## **Internal Exam**
+The internal exam will be in class. Announcement of the date will be done in class and on the web page when the term starts. It is mandatory.
+
+(**Note:** *These exams may be offered as open book exam*).
+<!-- single * for making text italic -->
+
+## **Advice on exams**
+The exams are designed to test understanding of the material by going beyond the examples that have been discussed in class. Assignments and class examples are not representative of the problems in exams. I recommend preparing for the exam by working through practice exams posted on Blackboard.
+
+## **Assignments**
+There are assignments (problem sets and cases), some requiring the use of a PC and program; the assignments may be submitted by groups of up to three; working on the homework in groups is highly recommended. Answers should be clear and explanatory (the solution and how you obtained it); Assignment due dates are given on the course outline and are non-negotiable - in the interest of fairness and as required by the honor code, all students should face the same set of deadlines.
+
+## **Advice on Assignments**
+The main objective of the Assignment is to help you learn by preparing for the class and thinking about the material. An advice is to do best answering the homework questions, but recognize that they are hard and meant to make you think. The best gauge is whether you understand the issues and the solutions that are handed out.
+
+## **Regrade Requests**
+Requests for reconsideration of grading must be submitted in writing within a week of when the material is returned. If a regarded is requested, the entire material will be re-evaluated. The regarded must be based entirely on own work and performance.
+
+The standards for Academic Integrity strictly apply. Exams must be completed independently and within the allotted time. Only the specifically allowed materials may be used and nothing else. On the Assignments any one can consult with any other class members and refer to class materials, except that answers to previous years’ problems are off limits.
+
+
+
+
+```{r}
+
+a <- matrix(c(3,2,4,6))
+b <- matrix(c(2,3,4,5))
+a-b
+a-b
+
+```
+

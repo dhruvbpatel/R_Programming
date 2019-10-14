@@ -1,0 +1,47 @@
+̥---
+title: "mlr"
+author: "Dhruv Patel"
+date: "03/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)   #importing library
+
+```
+
+
+```{r}
+data("marketing", package = "datarium")    # from package datarium importing data marketing
+head(marketing, 5)
+```
+
+
+```{r}
+model <- lm(sales ~ youtube + facebook + newspaper-1, data = marketing)
+summary(model)           # y = b0 + b1*x1 + b2*x2 + b3*x3 , importing 
+```
+
+```{r}
+summary(model)$coefficient         ## 
+
+```
+
+
+```{r}
+model  <- lm(sales ~ youtube + facebook, data = marketing)
+summary(model)                                                     # fitting model
+```
+
+```{r}
+confint(model)            #finally analyzing result
+```
+
+
+
+
+
